@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista de Tareas con Progreso</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>Lista de Tareas</h1>
+
+      <section class="contador" aria-label="Resumen de tareas">
+        <p class="contador__item">Total de tareas: <strong id="total">0</strong></p>
+        <p class="contador__item">Completadas: <strong id="completadas">0</strong></p>
+        <p class="contador__item">Pendientes: <strong id="pendientes">0</strong></p>
+      </section>
+
+      <div class="progreso">
+        <div class="progreso__pista"
+             role="progressbar"
+             id="barra"
+             aria-label="Progreso de tareas completadas"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             aria-valuenow="0">
+          <div class="progreso__relleno" id="relleno"></div>
+        </div>
+        <span class="progreso__texto" id="porcentaje">0%</span>
+      </div>
+    </header>
+
+    <form class="formulario" id="formulario" novalidate>
+      <label class="visualmente-oculto" for="entrada">Nueva tarea</label>
+      <input class="formulario__entrada"
+             type="text"
+             id="entrada"
+             placeholder="Escribe una tarea..."
+             autocomplete="off"
+             maxlength="120">
+      <button class="boton boton--primario" type="submit">Agregar tarea</button>
+    </form>
+    <p class="mensaje-error" id="error" role="alert" hidden></p>
+
+    <ul class="lista" id="lista"></ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

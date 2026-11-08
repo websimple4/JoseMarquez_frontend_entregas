@@ -1,0 +1,287 @@
+:root {
+  --fondo: #e9eef4;
+  --superficie: #ffffff;
+  --tinta: #17212b;
+  --tinta-suave: #5a6877;
+  --borde: #cdd6e0;
+  --acento: #0e6f6a;
+  --acento-oscuro: #0a5450;
+  --completada-fondo: #d8f0dd;
+  --completada-borde: #9fd3aa;
+  --peligro: #b3261e;
+  --radio: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.app {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+.app__header h1 {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.contador {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem;
+  padding: 0.9rem 1rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.contador__item {
+  margin: 0;
+  color: var(--tinta-suave);
+}
+
+.contador__item strong {
+  color: var(--tinta);
+  font-variant-numeric: tabular-nums;
+}
+
+.progreso {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.9rem 0 1.5rem;
+}
+
+.progreso__pista {
+  flex: 1;
+  height: 12px;
+  background: #cfd8e2;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progreso__relleno {
+  width: 0;
+  height: 100%;
+  background: var(--acento);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+.progreso__texto {
+  min-width: 3ch;
+  font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.formulario__entrada {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+  color: var(--tinta);
+  background: var(--superficie);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.formulario__entrada:focus {
+  outline: none;
+  border-color: var(--acento);
+}
+
+.formulario__entrada.es-invalido {
+  border-color: var(--peligro);
+}
+
+.mensaje-error {
+  margin: 0.5rem 0 0;
+  color: var(--peligro);
+  font-size: 0.9rem;
+}
+
+.boton {
+  padding: 0.7rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  border: 2px solid transparent;
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.boton:focus-visible,
+.formulario__entrada:focus-visible {
+  outline: 3px solid #f2b705;
+  outline-offset: 2px;
+}
+
+.boton--primario {
+  background: var(--acento);
+  color: #fff;
+}
+
+.boton--primario:hover {
+  background: var(--acento-oscuro);
+}
+
+.boton--completar {
+  background: transparent;
+  color: var(--acento);
+  border-color: var(--acento);
+}
+
+.boton--completar:hover {
+  background: var(--acento);
+  color: #fff;
+}
+
+.boton--eliminar {
+  background: transparent;
+  color: var(--peligro);
+  border-color: var(--peligro);
+}
+
+.boton--eliminar:hover {
+  background: var(--peligro);
+  color: #fff;
+}
+
+.lista {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.tarea {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "marca texto"
+    "acciones acciones";
+  gap: 0.6rem 0.75rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-left: 6px solid var(--borde);
+  border-radius: var(--radio);
+}
+
+.tarea__marca {
+  grid-area: marca;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid var(--tinta-suave);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+}
+
+.tarea__texto {
+  grid-area: texto;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.tarea__acciones {
+  grid-area: acciones;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tarea__acciones .boton {
+  flex: 1;
+}
+
+.tarea.completada {
+  background: var(--completada-fondo);
+  border-color: var(--completada-borde);
+  border-left-color: var(--acento);
+}
+
+.tarea.completada .tarea__texto {
+  text-decoration: line-through;
+  color: var(--tinta-suave);
+}
+
+.tarea.completada .tarea__marca {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  .app {
+    padding-top: 2.5rem;
+  }
+
+  .app__header h1 {
+    font-size: 2.25rem;
+  }
+
+  .contador {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .formulario {
+    flex-direction: row;
+  }
+
+  .formulario__entrada {
+    flex: 1;
+  }
+
+  .tarea {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "marca texto acciones";
+  }
+
+  .tarea__acciones .boton {
+    flex: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progreso__relleno,
+  .boton {
+    transition: none;
+  }
+}
